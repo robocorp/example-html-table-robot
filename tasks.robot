@@ -5,6 +5,14 @@ Library           RPA.Browser.Selenium
 Library           RPA.Tables
 Task Teardown     Close All Browsers
 
+*** Keywords ***
+Get HTML table
+    Open Available Browser
+    ...    https://www.w3schools.com/html/html_tables.asp
+    ...    headless=True
+    ${html_table}=    Get Element Attribute    css:table#customers    outerHTML
+    [Return]    ${html_table}
+
 *** Tasks ***
 Read HTML table as Table
     ${html_table}=    Get HTML table
@@ -15,11 +23,3 @@ Read HTML table as Table
     FOR    ${row}    IN    @{table}
         Log To Console    ${row}
     END
-
-*** Keywords ***
-Get HTML table
-    Open Available Browser
-    ...    https://www.w3schools.com/html/html_tables.asp
-    ...    headless=True
-    ${html_table}=    Get Element Attribute    css:table#customers    outerHTML
-    [Return]    ${html_table}
