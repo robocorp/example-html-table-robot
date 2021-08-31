@@ -6,4 +6,4 @@ dependencies:
   - beautifulsoup4=4.9.3
   - pip=20.1
   - pip:
-      - rpaframework==10.9.2
+      - rpaframework==11.0.0
