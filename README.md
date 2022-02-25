@@ -61,7 +61,7 @@ dependencies:
   - beautifulsoup4=4.9.3
   - pip=20.1
   - pip:
-      - rpaframework==11.1.3
+      - rpaframework==12.8.1
 ```
 
 > [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) is a Python library for pulling data out of HTML and XML files. It works with your favorite parser to provide idiomatic ways of navigating, searching, and modifying the parse tree. It commonly saves programmers hours or days of work.
