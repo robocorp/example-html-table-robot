@@ -1,9 +1,12 @@
 *** Settings ***
-Documentation     Working with HTML tables.
-Library           html_tables.py
-Library           RPA.Browser.Selenium
-Library           RPA.Tables
-Task Teardown     Close All Browsers
+Documentation       Working with HTML tables.
+
+Library             html_tables.py
+Library             RPA.Browser.Selenium
+Library             RPA.Tables
+
+Task Teardown       Close All Browsers
+
 
 *** Tasks ***
 Read HTML table as Table
@@ -16,10 +19,11 @@ Read HTML table as Table
         Log To Console    ${row}
     END
 
+
 *** Keywords ***
 Get HTML table
     Open Available Browser
     ...    https://www.w3schools.com/html/html_tables.asp
     ...    headless=True
     ${html_table}=    Get Element Attribute    css:table#customers    outerHTML
-    [Return]    ${html_table}
+    RETURN    ${html_table}
