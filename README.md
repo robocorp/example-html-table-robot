@@ -58,10 +58,10 @@ channels:
 
 dependencies:
   - python=3.7.5
-  - beautifulsoup4=4.9.3
+  - beautifulsoup4=4.11.1
   - pip=20.1
   - pip:
-      - rpaframework==12.8.1
+      - rpaframework==14.0.0
 ```
 
 > [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) is a Python library for pulling data out of HTML and XML files. It works with your favorite parser to provide idiomatic ways of navigating, searching, and modifying the parse tree. It commonly saves programmers hours or days of work.
@@ -108,11 +108,14 @@ def read_table_from_html(html_table: str) -> Table:
 
 ```robot
 *** Settings ***
-Documentation     Working with HTML tables.
-Library           html_tables.py
-Library           RPA.Browser.Selenium
-Library           RPA.Tables
-Task Teardown     Close All Browsers
+Documentation       Working with HTML tables.
+
+Library             html_tables.py
+Library             RPA.Browser.Selenium
+Library             RPA.Tables
+
+Task Teardown       Close All Browsers
+
 
 *** Tasks ***
 Read HTML table as Table
@@ -125,14 +128,14 @@ Read HTML table as Table
         Log To Console    ${row}
     END
 
+
 *** Keywords ***
 Get HTML table
     Open Available Browser
     ...    https://www.w3schools.com/html/html_tables.asp
     ...    headless=True
     ${html_table}=    Get Element Attribute    css:table#customers    outerHTML
-    [Return]    ${html_table}
-
+    RETURN    ${html_table}
 ```
 
 The `Get HTML table` keyword returns the example HTML table markup from https://www.w3schools.com/html/html_tables.asp.
