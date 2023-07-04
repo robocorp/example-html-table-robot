@@ -1,9 +1,20 @@
+# For more details on the format and content:
+# https://github.com/robocorp/rcc/blob/master/docs/recipes.md#what-is-in-condayaml
+# Tip: Adding a link to the release notes of the packages helps maintenance and security.
+
 channels:
   - conda-forge
 
 dependencies:
-  - python=3.9.13              # https://pyreadiness.org/3.9/ 
-  - beautifulsoup4=4.11.1      # https://www.crummy.com/software/BeautifulSoup/
-  - pip=22.2.2                 # https://pip.pypa.io/en/stable/news/
+  # Define conda-forge packages here -> https://anaconda.org/search
+  # When available, prefer the conda-forge packages over pip as installations are more efficient.
+  - python=3.9.16                     # https://pyreadiness.org/3.9/ 
+  - nodejs=16.14.2                    # https://github.com/nodejs/node/blob/main/CHANGELOG.md
+  - pip=22.1.2                        # https://pip.pypa.io/en/stable/news/
   - pip:
-      - rpaframework==17.5.1   # https://rpaframework.org/releasenotes.html
+    # Define pip packages here -> https://pypi.org/
+    - robotframework-browser==16.2.0  # https://github.com/MarketSquare/robotframework-browser/releases
+    - rpaframework==23.5.2            # https://rpaframework.org/releasenotes.html
+
+rccPostInstall:
+  - rfbrowser init                    # Initialize Playwright
