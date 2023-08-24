@@ -13,8 +13,8 @@ dependencies:
   - pip=22.1.2                        # https://pip.pypa.io/en/stable/news/
   - pip:
     # Define pip packages here -> https://pypi.org/
-    - robotframework-browser==16.2.0  # https://github.com/MarketSquare/robotframework-browser/releases
-    - rpaframework==23.5.2            # https://rpaframework.org/releasenotes.html
+    - robotframework-browser==17.3.0  # https://github.com/MarketSquare/robotframework-browser/releases
+    - rpaframework==26.0.1            # https://rpaframework.org/releasenotes.html
 
 rccPostInstall:
   - rfbrowser init                    # Initialize Playwright
