@@ -53,18 +53,22 @@ We use the table at https://www.w3schools.com/html/html_tables.asp as an example
 The robot uses the `beautifulsoup4` and the `rpaframework` dependencies in the `conda.yaml` configuration file:
 
 ```yaml
+
 channels:
   - conda-forge
 
 dependencies:
-  - python=3.7.5
-  - beautifulsoup4=4.11.1
-  - pip=20.1
+  - python=3.9.16                      
+  - nodejs=16.14.2                    
+  - pip=22.1.2                        
   - pip:
-      - rpaframework==14.0.0
+    - robotframework-browser==16.2.0  
+    - rpaframework==23.5.2            
+rccPostInstall:
+  - rfbrowser init                    
 ```
 
-> [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) is a Python library for pulling data out of HTML and XML files. It works with your favorite parser to provide idiomatic ways of navigating, searching, and modifying the parse tree. It commonly saves programmers hours or days of work.
+> [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) is a Python library for pulling data out of HTML and XML files. It works with your favorite parser to provide idiomatic ways of navigating, searching, and modifying the parse tree. It commonly saves programmers hours or days of work. We do not need to add a dependency, as it's part of the rpaframework package.
 
 > [RPA.Tables](https://robocorp.com/docs/libraries/rpa-framework/rpa-tables) is great for manipulating, sorting, and filtering tabular data. Common use-cases are reading and writing CSV files, inspecting files in directories, or running tasks using existing Excel data.
 
@@ -112,30 +116,26 @@ Documentation       Working with HTML tables.
 
 Library             html_tables.py
 Library             RPA.Browser.Selenium
-Library             RPA.Tables
+Library             RPA.Browser.Playwright    WITH NAME    Playwright
+Library             RPA.Tables    WITH NAME    Tables
 
-Task Teardown       Close All Browsers
+Task Teardown       Close All Brower Sessions
+
+
+*** Variables ***
+${TABLES_PAGE}      https://www.w3schools.com/html/html_tables.asp
 
 
 *** Tasks ***
-Read HTML table as Table
-    ${html_table}=    Get HTML table
+Read HTML table as Table - Selenium
+    ${html_table}=    Get HTML table with Selenium
     ${table}=    Read Table From Html    ${html_table}
-    ${dimensions}=    Get Table Dimensions    ${table}
-    ${first_row}=    Get Table Row    ${table}    ${0}
-    ${first_cell}=    RPA.Tables.Get Table Cell    ${table}    ${0}    ${0}
-    FOR    ${row}    IN    @{table}
-        Log To Console    ${row}
-    END
+    Log Table Elements    ${table}
 
-
-*** Keywords ***
-Get HTML table
-    Open Available Browser
-    ...    https://www.w3schools.com/html/html_tables.asp
-    ...    headless=True
-    ${html_table}=    Get Element Attribute    css:table#customers    outerHTML
-    RETURN    ${html_table}
+Read HTML table as Table - Playwright
+    ${html_table}=    Get HTML table with Playwright
+    ${table}=    Read Table From Html    ${html_table}
+    Log Table Elements    ${table}
 ```
 
 The `Get HTML table` keyword returns the example HTML table markup from https://www.w3schools.com/html/html_tables.asp.

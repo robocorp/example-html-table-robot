@@ -1,16 +1,9 @@
 tasks:
-  Default:
-    command:
-      - python
-      - -m
-      - robot
-      - --report
-      - NONE
-      - --outputdir
-      - output
-      - --logtitle
-      - Task log
-      - tasks.robot
+  Read With Selenium:
+    robotTaskName: Read HTML table as Table - Selenium
+  
+  Read With Playwright:
+    robotTaskName: Read HTML table as Table - Playwright
 
 condaConfigFile: conda.yaml
 artifactsDir: output
