@@ -2,8 +2,9 @@ channels:
   - conda-forge
 
 dependencies:
-  - python=3.9.13              # https://pyreadiness.org/3.9/ 
-  - beautifulsoup4=4.11.1      # https://www.crummy.com/software/BeautifulSoup/
-  - pip=22.2.2                 # https://pip.pypa.io/en/stable/news/
+  - python=3.12.1              # https://pyreadiness.org/3.9/
+  - beautifulsoup4=4.12.2      # https://www.crummy.com/software/BeautifulSoup/
+  - pip=23.3.2                 # https://pip.pypa.io/en/stable/news/
   - pip:
-      - rpaframework==17.5.1   # https://rpaframework.org/releasenotes.html
+      - robocorp==1.2.4
+      - robocorp-browser==2.2.1
